@@ -1,4 +1,3 @@
-# django-multi-form-sample
-Djangoで、複数のform要素を使うサンプル
+# How to use multiple forms for commenting
 
-[解説ブログ](https://narito.ninja/blog/detail/95/)
+[referred blog](https://narito.ninja/blog/detail/95/)
