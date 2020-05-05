@@ -1,0 +1,27 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    {{ error_form.errors }}
+    <h1 class="mb-5">My Diary</h1>
+    {% for diary in diary_list %}
+        {{ diary.text | linebreaksbr }} <span class="text-muted">{{ diary.created_at }}</span>
+
+        <!-- list of comments and comment form -->
+        <div class="mt-3 ml-5">
+            <!-- comment form for the comment -->
+            <form action="{% url 'app:comment_create' diary.pk %}" method="POST">
+                <!-- """ 'index' and 'comment_create' is url name """ -->
+                {{ form }}
+                <button type="submit">Submit</button>
+                {% csrf_token %}
+            </form>
+
+            <!-- draw comments that are linked to the diary -->
+            {% for comment in diary.comment_set.all %}
+                {{ comment.text }} <span class="text-muted">{{ diary.created_at }}</span><br>
+            {% endfor %}
+        </div><!-- end of comment list and comment form -->
+
+        <hr>
+    {% endfor %}
+{% endblock %}
